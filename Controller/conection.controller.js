@@ -2,29 +2,29 @@ import mysql from "mysql2";
 import dotenv from "dotenv";
 
 // "Importacion" de Varibles de entorno
-dotenv.config({ path: "../" });
+dotenv.config("../")
+console.log(process.env.DB_USER)
 
-const db = mysql.createConnection(
-    {
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASS,
-        database: process.env.DB_NAME
-    }
-);
-
-db.connect((err) => {
+const connection = mysql.createConnection({
+    host: 'b27eti4atof1lhferfiu-mysql.services.clever-cloud.com',
+    user: 'uvx0ggvw0puqgmbf',
+    password: '800eyoeHLoZkRSDssGTe',
+    database: 'b27eti4atof1lhferfiu'
+  });
+  
+  // Establecer la conexión
+  connection.connect((err) => {
     if (err) {
-        console.error("Error al conectar la base de datos");
-        return;
+      console.error('Error al conectar a la base de datos:', err);
+      return;
     }
-    console.log("Conexion Exitosa");
+    console.log('Conexión a la base de datos establecida');
 });
 
 export function queryAsync(sql, options) {
     return new Promise(
         (resolve, reject) => {
-            db.query(sql, options, (err, result) => {
+            mysql.query(sql, options, (err, result) => {
                 if (err) {
                     reject(err);
                 } else {
