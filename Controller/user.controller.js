@@ -9,7 +9,7 @@ const createUser = async (content)=>{
     try {
         const result = await queryAsync(
             'INSERT INTO users VALUES (?,?,?)',
-            [content.name,content.passwor,content.IsAuth]
+            [content.name,content.password,content.IsAuth]
         );
         return result;
     } catch (error) {
@@ -71,8 +71,8 @@ export async function deleteUser(req,res) {
 
 export async function postUsers(req,res) {
     try {
-        const { name, password, authBool} = req;
-        const createUserresp = await createUser(name,password,authBool);
+        const { name, password, IsAuth} = req.body;
+        const createUserresp = await createUser(req.body);
         res.status(200).json({status : 200, data:createUserresp});
         return {status : 200, data:users};
     } catch (error) {
