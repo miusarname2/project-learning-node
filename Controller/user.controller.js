@@ -20,10 +20,11 @@ const createUser = async (content)=>{
 const readUsers = async ()=>{
     try {
         const result = await queryAsync(
-            'SELECT * FROM users'
+            'SELECT * FROM user'
         );
         return result;
     } catch (error) {
+        console.log(error)
         return null;
     }
 }
@@ -46,6 +47,7 @@ const removeUser = async (id) => {
 export async function getUsers(req,res) {
     try {
         const users = await readUsers();
+        console.log(users,'usr');
         res.status(200).json({status : 200, data:users});
         return {status : 200, data:users};
     } catch (error) {

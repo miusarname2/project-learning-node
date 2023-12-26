@@ -3,7 +3,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import cors from "cors";
 import { user } from "./Controller/routers/user.routes.js";
-import { crearToken } from "./Controller/helpers/jwt.helpers.js";
+import { crearToken,validarToken } from "./Controller/helpers/jwt.helpers.js";
 import { queryAsync } from "./Controller/conection.controller.js";
 
 const app = express();
@@ -25,7 +25,7 @@ app.get("/",(req,res)=>{
     res.send("Bienvenido");
 });
 app.get("/token",crearToken);
-app.use("/user",user);
+app.use("/user",validarToken,user);
 
 
 // Server listen

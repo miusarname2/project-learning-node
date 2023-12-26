@@ -3,4 +3,6 @@ import { Router } from "express";
 
 export const user = Router();
 
-user.get('/',getUsers)
+user.get('/',getUsers);
+user.post('/',postUsers);
+user.delete('/',deleteUser);

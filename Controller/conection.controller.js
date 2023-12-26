@@ -24,7 +24,7 @@ const connection = mysql.createConnection({
 export function queryAsync(sql, options) {
     return new Promise(
         (resolve, reject) => {
-            mysql.query(sql, options, (err, result) => {
+            connection.query(sql, options, (err, result) => {
                 if (err) {
                     reject(err);
                 } else {
