@@ -61,7 +61,7 @@ export async function deleteUser(req,res) {
     try {
         const deletUserRes = await removeUser(req.id);
         res.status(200).json({status : 200, data:deletUserRes});
-        return {status : 200, data:users};
+        return {status : 200, data:deletUserRes};
     } catch (error) {
         console.error(error);
         res.status(500);
